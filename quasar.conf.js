@@ -53,14 +53,6 @@ module.exports = configure(function (ctx) {
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
-      chainWebpack({ module }) {
-        module
-          .rule('vue')
-          .use('vue-svg-inline-loader')
-          .loader('vue-svg-inline-loader')
-          .options({ addTitle: true });
-      },
-
       // transpile: false,
       // publicPath: '/',
 
@@ -80,8 +72,12 @@ module.exports = configure(function (ctx) {
 
       // https://quasar.dev/quasar-cli/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpack(/* chain */) {
-        //
+      chainWebpack({ module }) {
+        module
+          .rule('vue')
+          .use('vue-svg-inline-loader')
+          .loader('vue-svg-inline-loader')
+          .options({ addTitle: true });
       },
     },
 
