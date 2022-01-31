@@ -53,14 +53,12 @@ module.exports = configure(function (ctx) {
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
-      extendWebpack(config) {
-        config.module.rules.push({
-          test: /\.vue$/,
-          loader: 'vue-svg-inline-loader',
-          options: {
-            addTitle: true,
-          },
-        });
+      chainWebpack({ module }) {
+        module
+          .rule('vue')
+          .use('vue-svg-inline-loader')
+          .loader('vue-svg-inline-loader')
+          .options({ addTitle: true });
       },
 
       // transpile: false,
